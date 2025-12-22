@@ -1,22 +1,22 @@
 package com.jandle.cookie;
 
-import com.jandle.internal.cookie.SetCookie;
+import com.jandle.api.cookies.ResponseCookie;
 import com.jandle.api.cookies.SameSite;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HttpSetCookieTest {
+class HttpResponseCookieTest {
 
 	@Test
 	void basicCookie_serialization() {
-		SetCookie cookie = new SetCookie("a", "b");
+		ResponseCookie cookie = new ResponseCookie("a", "b");
 		assertEquals("a=b; Path=/; SameSite=Lax", cookie.toString());
 	}
 
 	@Test
 	void secureHttpOnlyCookie() {
-		SetCookie cookie = new SetCookie("session", "123");
+		ResponseCookie cookie = new ResponseCookie("session", "123");
 		cookie.setSecure(true);
 		cookie.setHttpOnly(true);
 
@@ -27,7 +27,7 @@ class HttpSetCookieTest {
 
 	@Test
 	void sameSiteNone_requiresSecure() {
-		SetCookie cookie = new SetCookie("a", "b");
+		ResponseCookie cookie = new ResponseCookie("a", "b");
 
 		assertThrows(IllegalArgumentException.class,
 				() -> cookie.setSameSite(SameSite.NONE));
@@ -35,7 +35,7 @@ class HttpSetCookieTest {
 
 	@Test
 	void sameSiteNone_withSecure_allowed() {
-		SetCookie cookie = new SetCookie("a", "b");
+		ResponseCookie cookie = new ResponseCookie("a", "b");
 		cookie.setSecure(true);
 		cookie.setSameSite(SameSite.NONE);
 
@@ -44,7 +44,7 @@ class HttpSetCookieTest {
 
 	@Test
 	void partitioned_requiresSecure() {
-		SetCookie cookie = new SetCookie("a", "b");
+		ResponseCookie cookie = new ResponseCookie("a", "b");
 
 		assertThrows(IllegalArgumentException.class,
 				() -> cookie.setPartitioned(true));
@@ -52,7 +52,7 @@ class HttpSetCookieTest {
 
 	@Test
 	void partitioned_withSecure_allowed() {
-		SetCookie cookie = new SetCookie("a", "b");
+		ResponseCookie cookie = new ResponseCookie("a", "b");
 		cookie.setSecure(true);
 		cookie.setPartitioned(true);
 
@@ -61,7 +61,7 @@ class HttpSetCookieTest {
 
 	@Test
 	void maxAge_and_expires_rendered() {
-		SetCookie cookie = new SetCookie("a", "b");
+		ResponseCookie cookie = new ResponseCookie("a", "b");
 		cookie.setMaxAgeSeconds(3600);
 		cookie.setExpiresMillis(1_700_000_000_000L);
 
@@ -72,7 +72,7 @@ class HttpSetCookieTest {
 
 	@Test
 	void domain_and_path_rendered() {
-		SetCookie cookie = new SetCookie("a", "b");
+		ResponseCookie cookie = new ResponseCookie("a", "b");
 		cookie.setDomain("example.com");
 		cookie.setPath("/api");
 

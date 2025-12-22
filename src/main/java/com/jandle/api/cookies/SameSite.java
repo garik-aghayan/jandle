@@ -1,7 +1,5 @@
 package com.jandle.api.cookies;
 
-import com.jandle.internal.cookie.SetCookie;
-
 /**
  * Represents the {@code SameSite} attribute of an HTTP cookie.
  *
@@ -26,7 +24,7 @@ import com.jandle.internal.cookie.SetCookie;
  *
  * <p>
  * This enum is typically used when building a {@code Set-Cookie}
- * header via {@link SetCookie}.
+ * header via {@link ResponseCookie}.
  */
 public enum SameSite {
 	/**
