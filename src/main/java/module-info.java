@@ -2,13 +2,13 @@ module com.jandle {
 	requires com.google.gson;
 	requires jdk.httpserver;
 
-	exports com.jandle.api;
-	exports com.jandle.api.annotations;
-	exports com.jandle.api.http;
-	exports com.jandle.api.cookies;
-	exports com.jandle.api.cors;
-	exports com.jandle.api.ratelimiter;
-	exports com.jandle.api.lifecycle;
-	exports com.jandle.api.exceptions;
-	exports com.jandle.api.logger;
+	exports org.jandle.api;
+	exports org.jandle.api.annotations;
+	exports org.jandle.api.http;
+	exports org.jandle.api.cookies;
+	exports org.jandle.api.cors;
+	exports org.jandle.api.ratelimiter;
+	exports org.jandle.api.lifecycle;
+	exports org.jandle.api.exceptions;
+	exports org.jandle.api.logger;
 }
