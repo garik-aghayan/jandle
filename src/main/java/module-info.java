@@ -1,4 +1,4 @@
-module com.jandle {
+module org.jandle {
 	requires com.google.gson;
 	requires jdk.httpserver;
 
