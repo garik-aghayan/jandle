@@ -1,8 +1,9 @@
 package com.jandle.api;
 
 import com.google.gson.JsonParseException;
+import com.jandle.api.lifecycle.OnServerStart;
 import com.jandle.api.http.*;
-import com.jandle.api.resourcemanagment.Releasable;
+import com.jandle.api.lifecycle.CleanupCallback;
 import com.jandle.internal.http.FilterChain;
 import com.jandle.internal.http.HttpRequest;
 import com.jandle.internal.http.HttpResponse;
@@ -349,20 +350,92 @@ public class JandleApplication implements HttpHandler {
 	}
 
 	/**
-	 * Starts the HTTP server.
+	 * Starts the HTTP server using the configured settings.
+	 *
+	 * <p>
+	 * This method:
+	 * <ul>
+	 *     <li>Registers this application as the root {@link HttpHandler}</li>
+	 *     <li>Applies the configured {@link Executor}, if any</li>
+	 *     <li>Starts the underlying {@link HttpServer}</li>
+	 * </ul>
+	 *
+	 * <p>
+	 * This overload does not register a startup callback.
+	 * To execute custom logic after the server has started,
+	 * use {@link #start(OnServerStart)}.
 	 */
 	public void start() {
-		this.server.createContext("/", this);
-		this.server.setExecutor(executor);
-		this.server.start();
+		start(null);
 	}
 
 	/**
-	 * Stops the HTTP server.
+	 * Starts the HTTP server and optionally executes a callback after startup.
 	 *
-	 * @param delay delay in seconds before forceful termination
+	 * <p>
+	 * The provided callback is invoked <b>after</b> the server has successfully
+	 * started and is ready to accept requests.
+	 *
+	 * <p>
+	 * Typical use cases include:
+	 * <ul>
+	 *     <li>Logging startup information</li>
+	 *     <li>Initializing background tasks</li>
+	 *     <li>Registering external resources</li>
+	 * </ul>
+	 *
+	 * @param cb optional startup callback executed after the server starts;
+	 *           may be {@code null}
+	 */
+	public void start(OnServerStart cb) {
+		this.server.createContext("/", this);
+		this.server.setExecutor(executor);
+		this.server.start();
+
+		if (cb != null) cb.run();
+	}
+
+	/**
+	 * Stops the HTTP server after a given delay.
+	 *
+	 * <p>
+	 * The delay allows in-flight exchanges to complete before
+	 * the server is fully shut down.
+	 *
+	 * <p>
+	 * This overload does not execute a cleanup callback.
+	 * To perform cleanup logic before shutdown,
+	 * use {@link #stop(int, CleanupCallback)}.
+	 *
+	 * @param delay delay in seconds before the server is stopped
 	 */
 	public void stop(int delay) {
+		stop(delay, null);
+	}
+
+	/**
+	 * Stops the HTTP server after a given delay and optionally executes
+	 * a cleanup callback.
+	 *
+	 * <p>
+	 * The callback is executed <b>before</b> the underlying
+	 * {@link HttpServer} is stopped.
+	 *
+	 * <p>
+	 * Typical use cases include:
+	 * <ul>
+	 *     <li>Releasing resources</li>
+	 *     <li>Flushing logs</li>
+	 *     <li>Gracefully shutting down background tasks</li>
+	 * </ul>
+	 *
+	 * @param delay delay in seconds before the server is stopped
+	 * @param cb    optional cleanup callback executed before stopping;
+	 *              may be {@code null}
+	 */
+	public void stop(int delay, CleanupCallback cb) {
+		if (cb != null) cleanup(cb);
+
 		this.server.stop(delay);
 	}
 
@@ -391,18 +464,11 @@ public class JandleApplication implements HttpHandler {
 	}
 
 	/**
-	 * Releases resources held by global filters.
+	 * Executes the provided cleanup callback.
 	 *
-	 * <p>
-	 * Filters implementing {@link Releasable} will have their
-	 * {@link Releasable#release()} method invoked.
+	 * @param cb cleanup callback to execute
 	 */
-	void shutdown() {
-		if (globalFilters == null) return;
-		for (var filter : globalFilters) {
-			if (filter instanceof Releasable) {
-				((Releasable) filter).release();
-			}
-		}
+	void cleanup(CleanupCallback cb) {
+		cb.run();
 	}
 }

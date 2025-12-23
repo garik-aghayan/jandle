@@ -8,7 +8,7 @@ module com.jandle {
 	exports com.jandle.api.cookies;
 	exports com.jandle.api.cors;
 	exports com.jandle.api.ratelimiter;
-	exports com.jandle.api.resourcemanagment;
+	exports com.jandle.api.lifecycle;
 	exports com.jandle.api.exceptions;
 	exports com.jandle.api.logger;
 }

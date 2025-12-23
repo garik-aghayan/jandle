@@ -42,7 +42,7 @@ module com.jandle
 | `com.jandle.api.exceptions` | Framework-specific exceptions |
 | `com.jandle.api.logger` | Logging abstraction used by the framework |
 | `com.jandle.api.ratelimiter` | Rate limiting filter implementation |
-| `com.jandle.api.resourcemanagment` | Resource lifecycle & cleanup contracts |
+| `com.jandle.api.lifecycle` | Resource lifecycle & cleanup contracts |
 
 Full API documentation is available here:  
 👉 https://garik-aghayan.github.io/jandle/

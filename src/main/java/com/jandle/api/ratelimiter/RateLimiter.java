@@ -4,7 +4,7 @@ import com.jandle.api.http.Chain;
 import com.jandle.api.http.Filter;
 import com.jandle.api.http.Request;
 import com.jandle.api.http.Response;
-import com.jandle.api.resourcemanagment.Releasable;
+import com.jandle.api.lifecycle.Releasable;
 import com.jandle.internal.ratelimiter.DefaultTokenStorage;
 import com.jandle.internal.ratelimiter.TokenBucket;
 

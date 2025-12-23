@@ -32,7 +32,7 @@
 
   <groupId>com.jandle</groupId>
   <artifactId>jandle</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>jar</packaging>
 
   <properties>
@@ -74,6 +74,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
         <configuration>
           <release>21</release>
           <source>21</source>

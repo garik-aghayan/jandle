@@ -1,6 +1,6 @@
 package com.jandle.api.ratelimiter;
 
-import com.jandle.api.resourcemanagment.Releasable;
+import com.jandle.api.lifecycle.Releasable;
 import com.jandle.internal.ratelimiter.TokenBucket;
 
 /**

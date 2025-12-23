@@ -1,4 +1,4 @@
-package com.jandle.api.resourcemanagment;
+package com.jandle.api.lifecycle;
 
 /**
  * Represents a component that holds resources requiring explicit cleanup.
@@ -14,7 +14,7 @@ package com.jandle.api.resourcemanagment;
  * </ul>
  *
  * <p>
- * The {@link #release()} method is invoked during application shutdown
+ * The {@link #release()} method should be invoked during application shutdown
  * to allow graceful resource cleanup.
  * </p>
  */
