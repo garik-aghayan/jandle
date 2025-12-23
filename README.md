@@ -211,9 +211,9 @@ This allows integration with:
 
 ---
 
-## 🧹 Resource Management
+## 🔁 Lifecycle
 
-The `resourcemanagment` package defines contracts for resources that must be explicitly closed or cleaned up when the application shuts down.
+The `lifecycle` package defines interfaces for resources that must be explicitly closed or cleaned up when the application shuts down.
 
 This keeps lifecycle management explicit and predictable.
 
