@@ -5,6 +5,62 @@ import com.sun.net.httpserver.Headers;
 
 import java.io.IOException;
 
+/**
+ * Represents an HTTP response abstraction used to construct and send responses
+ * to a client.
+ *
+ * <p>This interface provides a unified API for:
+ * <ul>
+ *   <li>Sending fixed-length responses (text, JSON, binary)</li>
+ *   <li>Streaming responses using chunked transfer encoding</li>
+ *   <li>Manipulating HTTP headers, status codes, cookies, and redirects</li>
+ * </ul>
+ *
+ * <h2>Response Lifecycle</h2>
+ * A response follows a strict lifecycle:
+ * <ol>
+ *   <li>Headers and metadata are configured (status, headers, content type, etc.)</li>
+ *   <li>The response is committed by calling one of the {@code send*},
+ *       {@code openStream()}, or {@code sendHeaders()} methods</li>
+ *   <li>After commitment, headers can no longer be modified</li>
+ * </ol>
+ *
+ * <h2>Fixed-Length Responses</h2>
+ * Methods such as {@link #sendText(String)}, {@link #sendJson(Object)},
+ * and {@link #sendBytes(byte[])} automatically:
+ * <ul>
+ *   <li>Set the appropriate {@code Content-Length}</li>
+ *   <li>Send the response headers</li>
+ *   <li>Write the response body</li>
+ * </ul>
+ *
+ * <h2>Streaming Responses</h2>
+ * Streaming is supported via {@link #openStream()}, {@link #stream(byte[])},
+ * {@link #flushStream()}, and {@link #closeStream()}.
+ *
+ * <p>Calling {@link #openStream()} switches the response to
+ * <em>chunked transfer encoding</em> by sending headers with
+ * {@code Content-Length = 0}. Once streaming has begun, fixed-length responses
+ * are no longer permitted.
+ *
+ * <h2>Thread Safety</h2>
+ * Implementations of this interface are <strong>not guaranteed to be thread-safe</strong>.
+ * A {@code Response} instance is expected to be used by a single request-handling
+ * thread.
+ *
+ * <h2>Error Handling</h2>
+ * Most methods throw {@link java.io.IOException} if:
+ * <ul>
+ *   <li>The response has already been committed</li>
+ *   <li>An I/O error occurs while writing to the client</li>
+ * </ul>
+ *
+ * <p>Illegal state transitions (e.g. writing to a closed stream) may result in
+ * {@link IllegalStateException}.
+ *
+ * @see com.sun.net.httpserver.Headers
+ * @see org.jandle.api.cookies.ResponseCookie
+ */
 public interface Response {
 	/**
 	 * Opens the response for streaming (chunked transfer encoding).

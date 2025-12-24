@@ -27,22 +27,22 @@ The framework is intentionally low-level enough to stay transparent, while still
 Jandle exposes a single Java module:
 
 ```
-module com.jandle
+module org.jandle
 ```
 
 ### Package Structure
 
 | Package | Description |
 |-------|-------------|
-| `com.jandle.api` | Core application bootstrap and public API |
-| `com.jandle.api.annotations` | Annotations for handler/filter discovery |
-| `com.jandle.api.http` | HTTP abstractions (Request, Response, Chain, Handler, Filter) |
-| `com.jandle.api.cookies` | Cookie and cookie attribute APIs |
-| `com.jandle.api.cors` | CORS filter and configuration classes |
-| `com.jandle.api.exceptions` | Framework-specific exceptions |
-| `com.jandle.api.logger` | Logging abstraction used by the framework |
-| `com.jandle.api.ratelimiter` | Rate limiting filter implementation |
-| `com.jandle.api.lifecycle` | Resource lifecycle & cleanup contracts |
+| `org.jandle.api` | Core application bootstrap and public API |
+| `org.jandle.api.annotations` | Annotations for handler/filter discovery |
+| `org.jandle.api.http` | HTTP abstractions (Request, Response, Chain, Handler, Filter) |
+| `org.jandle.api.cookies` | Cookie and cookie attribute APIs |
+| `org.jandle.api.cors` | CORS filter and configuration classes |
+| `org.jandle.api.exceptions` | Framework-specific exceptions |
+| `org.jandle.api.logger` | Logging abstraction used by the framework |
+| `org.jandle.api.ratelimiter` | Rate limiting filter implementation |
+| `org.jandle.api.lifecycle` | Resource lifecycle & cleanup contracts |
 
 Full API documentation is available here:  
 👉 https://garik-aghayan.github.io/jandle/
@@ -213,7 +213,7 @@ This allows integration with:
 
 ## 🔁 Lifecycle
 
-The `lifecycle` package defines interfaces for resources that must be explicitly closed or cleaned up when the application shuts down.
+The `lifecycle` package defines interfaces for resources that must be explicitly closed, cleaned up or run when the application starts or shuts down.
 
 This keeps lifecycle management explicit and predictable.
 

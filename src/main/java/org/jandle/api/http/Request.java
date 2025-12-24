@@ -4,6 +4,58 @@ import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents an immutable view of an incoming HTTP request.
+ *
+ * <p>This interface provides access to all request-related data, including:
+ * <ul>
+ *   <li>Request metadata (method, path, addresses)</li>
+ *   <li>Path and query parameters</li>
+ *   <li>Headers and cookies</li>
+ *   <li>Request-scoped attributes</li>
+ *   <li>Request body as raw bytes or parsed JSON</li>
+ * </ul>
+ *
+ * <h2>Immutability</h2>
+ * Except for request attributes, a {@code Request} instance is logically
+ * immutable. Methods returning collections or arrays return <strong>defensive
+ * copies</strong>, and modifying them will not affect the underlying request.
+ *
+ * <h2>Path vs Query Parameters</h2>
+ * <ul>
+ *   <li><strong>Path parameters</strong> are extracted from route templates
+ *       (e.g. {@code /users/{id}})</li>
+ *   <li><strong>Query parameters</strong> are parsed from the URL query string
+ *       (e.g. {@code ?page=1&sort=asc})</li>
+ * </ul>
+ *
+ * <h2>Headers and Cookies</h2>
+ * Header and cookie lookup is case-insensitive where applicable, following
+ * HTTP specifications.
+ *
+ * <h2>Request Attributes</h2>
+ * Attributes provide a mechanism for filters and handlers to share
+ * request-scoped data. They exist only for the lifetime of the request
+ * and are not transmitted to the client.
+ *
+ * <h2>Request Body</h2>
+ * The request body may be accessed:
+ * <ul>
+ *   <li>As raw bytes via {@link #getBodyBytes()}</li>
+ *   <li>As parsed JSON via {@link #getBodyJson()}</li>
+ * </ul>
+ *
+ * <p>If the {@code Content-Type} is not JSON, {@link #getBodyJson()} returns
+ * an empty map.
+ *
+ * <h2>Thread Safety</h2>
+ * {@code Request} instances are not required to be thread-safe and are
+ * intended to be accessed by a single request-processing thread.
+ *
+ * @see RequestMethod
+ * @see Response
+ * @see Chain
+ */
 public interface Request {
 	/**
 	 * Returns the request path.
