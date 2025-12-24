@@ -1,4 +1,0 @@
---patch-module
-org.jandle=_
---add-reads
-org.jandle=ALL-UNNAMED
