@@ -235,9 +235,27 @@ Jandle is especially suitable for:
 ---
 
 ## 📚 Documentation
-
+- 📦 Maven Central: https://central.sonatype.com/artifact/org.jandle/jandle
 - 📘 JavaDoc: https://garik-aghayan.github.io/jandle/
 - 💻 Source code: https://github.com/garik-aghayan/jandle
+
+---
+
+## 📦 Installation 
+
+### Maven
+```xml
+<dependency>
+  <groupId>org.jandle</groupId>
+  <artifactId>jandle</artifactId>
+  <version>1.0.1</version>
+</dependency>
+```
+
+### Gradle
+```
+implementation("org.jandle:jandle:1.0.1")
+```
 
 ---
 
