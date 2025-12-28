@@ -151,12 +151,10 @@ public class JandleApplication implements HttpHandler {
 				if (isHandled) return;
 			}
 			httpResponse.sendStatus(404);
-		} catch (JsonParseException e) {
+		}
+		catch (JsonParseException e) {
 			logger.problem(e);
 			httpResponse.status(400).sendJson(Map.of("messages", List.of(e.getClass(), e.getMessage())));
-		} catch (Exception e) {
-			logger.problem(e);
-			httpResponse.sendStatus(500);
 		}
 	}
 
@@ -468,7 +466,7 @@ public class JandleApplication implements HttpHandler {
 	 *
 	 * @param cb cleanup callback to execute
 	 */
-	void cleanup(CleanupCallback cb) {
+	public void cleanup(CleanupCallback cb) {
 		cb.run();
 	}
 }
