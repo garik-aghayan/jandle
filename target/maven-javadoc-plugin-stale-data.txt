@@ -1,0 +1,61 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+@argfile
+--class-path
+'C:/Users/11agh/.m2/repository/com/google/errorprone/error_prone_annotations/2.38.0/error_prone_annotations-2.38.0.jar'
+--module-path
+'C:/Users/11agh/.m2/repository/com/google/code/gson/gson/2.13.1/gson-2.13.1.jar;C:/Users/11agh/Code/jandle/target/jandle-1.0.3.jar'
+--patch-module
+org.jandle='C:/Users/11agh/Code/jandle/src/main/java;C:/Users/11agh/Code/jandle/target/generated-sources/annotations'
+-encoding
+'UTF-8'
+-protected
+--module-source-path
+'C:/Users/11agh/Code/jandle/target/reports/apidocs/src'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/11agh/Code/jandle/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Jandle 1.0.3 API'
+-use
+-version
+-windowtitle
+'Jandle 1.0.3 API'
+org.jandle.api.annotations
+org.jandle.api.cookies
+org.jandle.api.cors
+org.jandle.api.exceptions
+org.jandle.api.http
+org.jandle.api
+org.jandle.api.lifecycle
+org.jandle.api.logger
+org.jandle.api.ratelimiter
+'C:/Users/11agh/Code/jandle/src/main/java/module-info.java'
+C:\Users\11agh\Code\jandle\target\reports\apidocs\allclasses-index.html = 1766931603081
+C:\Users\11agh\Code\jandle\target\reports\apidocs\allpackages-index.html = 1766931603084
+C:\Users\11agh\Code\jandle\target\reports\apidocs\copy.svg = 1766931603138
+C:\Users\11agh\Code\jandle\target\reports\apidocs\element-list = 1766931602805
+C:\Users\11agh\Code\jandle\target\reports\apidocs\help-doc.html = 1766931603131
+C:\Users\11agh\Code\jandle\target\reports\apidocs\index-all.html = 1766931603121
+C:\Users\11agh\Code\jandle\target\reports\apidocs\index.html = 1766931603126
+C:\Users\11agh\Code\jandle\target\reports\apidocs\link.svg = 1766931603139
+C:\Users\11agh\Code\jandle\target\reports\apidocs\member-search-index.js = 1766931603092
+C:\Users\11agh\Code\jandle\target\reports\apidocs\module-search-index.js = 1766931603087
+C:\Users\11agh\Code\jandle\target\reports\apidocs\overview-tree.html = 1766931603053
+C:\Users\11agh\Code\jandle\target\reports\apidocs\package-search-index.js = 1766931603088
+C:\Users\11agh\Code\jandle\target\reports\apidocs\script.js = 1766931603136
+C:\Users\11agh\Code\jandle\target\reports\apidocs\search-page.js = 1766931603144
+C:\Users\11agh\Code\jandle\target\reports\apidocs\search.html = 1766931603124
+C:\Users\11agh\Code\jandle\target\reports\apidocs\search.js = 1766931603142
+C:\Users\11agh\Code\jandle\target\reports\apidocs\serialized-form.html = 1766931602923
+C:\Users\11agh\Code\jandle\target\reports\apidocs\stylesheet.css = 1766931603133
+C:\Users\11agh\Code\jandle\target\reports\apidocs\tag-search-index.js = 1766931603093
+C:\Users\11agh\Code\jandle\target\reports\apidocs\type-search-index.js = 1766931603090

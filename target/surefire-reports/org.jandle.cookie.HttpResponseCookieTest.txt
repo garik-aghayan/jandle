@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.jandle.cookie.HttpResponseCookieTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.078 s -- in org.jandle.cookie.HttpResponseCookieTest
