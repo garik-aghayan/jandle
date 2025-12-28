@@ -248,13 +248,13 @@ Jandle is especially suitable for:
 <dependency>
   <groupId>org.jandle</groupId>
   <artifactId>jandle</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 
 ### Gradle
 ```
-implementation("org.jandle:jandle:1.0.2")
+implementation("org.jandle:jandle:1.0.3")
 ```
 
 ---

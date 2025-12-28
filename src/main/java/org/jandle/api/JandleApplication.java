@@ -156,6 +156,10 @@ public class JandleApplication implements HttpHandler {
 			logger.problem(e);
 			httpResponse.status(400).sendJson(Map.of("messages", List.of(e.getClass(), e.getMessage())));
 		}
+		catch (Exception e) {
+			logger.problem(e);
+			httpResponse.sendStatus(500);
+		}
 	}
 
 	/**
